@@ -1,15 +1,20 @@
-Katacoda has integrated [Weave Scope](https://weave.works/scope) to help visualise Docker and Kubernetes based deployments.
+Commands can be run automatically in the foreground and background when a scenario starts and when a step loads.
 
-The aim of integrating Scope is to help people understand what has been deployed and as changes new aspects are deployed to automatically see the impact.
+The `index.json` file contains the scenario structure. 
 
-To launch Scope, click the Tab.
+Within the `intro` block and for each step, two files can be defined under `courseData` and `code`.
 
-## Index.json
+`courseData` defines a script which runs in the background.
 
-To add the visualise tab to your scenarios, include the following JSON snippet within the environments node. This will automatically add the tab to the scenarios. When the tab is pressed, the command to launch the Scope container will run.
+`code` defines the commands to run in the foreground.
 
-<pre class="file">
-"showvisualise": true,
-"scope": "docker run --name=scope -d --net=host --pid=host --privileged -v /var/run/docker.sock:/var/run/docker.sock:rw weaveworks/scope:1.9.1 --probe.docker=true",
-"scopePort": 4040,
+<pre>
+"intro": {
+    "text": "intro.md",
+    "courseData": "background.sh",
+    "code": "foreground.sh",
+    "credits": ""
+}
 </pre>
+
+When the user proceeds to the next step, additional scripts can be run.
